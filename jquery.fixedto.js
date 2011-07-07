@@ -18,76 +18,97 @@
 			options_default = {
 				position: "top",
 				align: "center",
-				hide: true
+				hide: true,
+				height_hide: 15
 			};
 			options = jQuery.extend(options_default,options_user);
 			position = options.position;
 			align = options.align;
 			hide = options.hide;
+			height_hide = options.height_hide;
 			
 			var element = jQuery(this),
-					height_element = element.height(),
-					width_element = element.width();
+					height_element = element.outerHeight(),
+					width_element = element.outerWidth();
 			
 			position_calculate = function(){
 				
-				var thewindow = jQuery(window),
-						height_thewindow = thewindow.height(),
-						width_thewindow = thewindow.width();
+		 		thewindow = jQuery(window),
+				height_thewindow = thewindow.height(),
+				width_thewindow = thewindow.width();
 				
-				vertical = position == "top" || position == "left" ? "top" : "bottom",
-				horizontal = align == "right" ? "right" : "left",
-				margin_horizontal = align == "center" ? (width_thewindow - width_element) / 2 : 0;
+				if(position == "top" || position == "bottom") {
+					var vertical = position == "top" ? "top" : "bottom",
+							horizontal = align == "right" ? "right" : "left",
+							margin_horizontal = align == "center" ? (width_thewindow - width_element) / 2 : 0;
+					var new_style = {};
+							new_style[vertical] = 0,
+							new_style[horizontal] = margin_horizontal+"px";
+					element.addClass("fixedTo");
+				}
 				
-				var new_style = {};
-						new_style[vertical] = 0,
-						new_style[horizontal] = margin_horizontal+"px";
+				if (position == "right") {
+					if(align == "left")
+						y = 0;
+					else if (align == "center")
+						y = (height_thewindow - width_element) / 2;
+					else if (align == "right")
+						y = height_thewindow - width_element;
+					x = ((width_thewindow - width_element) / 2) + width_element;
+					var new_style = {};
+							new_style["-ms-filter"] = "progid:DXImageTransform.Microsoft.Matrix(M11=-0, M12=-1, M21=1, M22=-0,sizingMethod='auto expand')",
+							new_style["filter"] = "progid:DXImageTransform.Microsoft.Matrix(M11=0, M12=-1, M21=1, M22=0,sizingMethod='auto expand')",
+							new_style["-moz-transform-origin"] = "0 0",
+							new_style["-moz-transform"] = "rotate(90deg) translate("+Number(y)+""+"px,-"+Number(x)+"px)",
+							new_style["-webkit-transform-origin"] = "0 0",
+							new_style["-webkit-transform"] = "rotate(90deg) translate("+Number(y)+""+"px,-"+Number(x)+"px)",
+							new_style["transform-origin"] = "0 0",
+							new_style["transform"] = "rotate(90deg) translate("+Number(y)+""+"px,-"+Number(x)+"px)";
+				}
 				
-				element.addClass("fixedTo").css(new_style);
-
-			}
-			
-			position_calculate();
-			
-			jQuery(window).resize(function(){
-				position_calculate();
-			});
-			
-			
-			position_rotate = function(){
+				if (position == "left") {
+					if(align == "right")
+						y = width_element;
+					else if (align == "center")
+						y = width_element + ((height_thewindow - width_element) / 2);
+					else if (align == "left")
+						y = width_element + (height_thewindow - width_element);
+					x = (width_thewindow - width_element) / 2;
+					var new_style = {};
+							new_style["-ms-filter"] = "progid:DXImageTransform.Microsoft.Matrix(M11=-0, M12=1, M21=-1, M22=-0,sizingMethod='auto expand')",
+							new_style["filter"] = "progid:DXImageTransform.Microsoft.Matrix(M11=-0, M12=1, M21=-1, M22=-0,sizingMethod='auto expand')",
+							new_style["-moz-transform-origin"] = "0 0",
+							new_style["-moz-transform"] = "rotate(270deg) translate(-"+Number(y)+""+"px,-"+Number(x)+"px)",
+							new_style["-webkit-transform-origin"] = "0 0",
+							new_style["-webkit-transform"] = "rotate(270deg) translate(-"+Number(y)+""+"px,-"+Number(x)+"px)",
+							new_style["transform-origin"] = "0 0",
+							new_style["transform"] = "rotate(270deg) translate(-"+Number(y)+""+"px,-"+Number(x)+"px)";
+				}
 				
-				var new_style_left = {};
-						new_style_left["-ms-filter"] = "progid:DXImageTransform.Microsoft.Matrix(M11=-0, M12=1, M21=-1, M22=-0,sizingMethod='auto expand')",
-						new_style_left["filter"] = "progid:DXImageTransform.Microsoft.Matrix(M11=-0, M12=1, M21=-1, M22=-0,sizingMethod='auto expand')",
-						new_style_left["-moz-transform-origin"] = "0 0",
-						new_style_left["-moz-transform"] = "rotate(270deg)",
-						new_style_left["-webkit-transform-origin"] = "0 0",
-						new_style_left["-webkit-transform"] = "rotate(270deg)",
-						new_style_left["transform-origin"] = "0 0",
-						new_style_left["transform"] = "rotate(270deg)";
-
-				var new_style_right = {};
-						new_style_right["-ms-filter"] = "progid:DXImageTransform.Microsoft.Matrix(M11=-0, M12=-1, M21=1, M22=-0,sizingMethod='auto expand')",
-						new_style_right["filter"] = "progid:DXImageTransform.Microsoft.Matrix(M11=0, M12=-1, M21=1, M22=0,sizingMethod='auto expand')",
-						new_style_right["-moz-transform-origin"] = "0 0",
-						new_style_right["-moz-transform"] = "rotate(90deg)",
-						new_style_right["-webkit-transform-origin"] = "0 0",
-						new_style_right["-webkit-transform"] = "rotate(90deg)",
-						new_style_right["transform-origin"] = "0 0",
-						new_style_right["transform"] = "rotate(90deg)";
-
-				if (position == "left") 
-					element.css(new_style_left);
-				else if (position == "right")
-					element.css(new_style_right);		
+				element.css(new_style);
 					
 			}
 			
-			position_rotate();
+			show_hide = function(){
+				
+				element.prepend('<a href="#" class="close">X</a>');
+				jQuery('.close', element).toggle(function() {
+					element.css({"overflow":"hidden"}).animate({"height":height_hide+"px"});
+			  }, function(){
+				  element.css({"overflow":"auto"}).animate({"height":height_element+"px"});
+				});
+				
+			}
 			
+			position_calculate();
+			jQuery(window).resize(function(){
+				position_calculate();
+			});
+
+			if (hide === true) show_hide();
 			
-    });// this.each
+    });
 	  
-  }//function fixedTo
+  }
 
 })(jQuery);
