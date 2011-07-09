@@ -12,6 +12,13 @@
     }
     body {
       text-align:center;
+      font:normal 12px/14px Arial,sans-serif;
+    }
+    a {
+      text-decoration:none;
+      font-weight:bold;
+      font-size:16px;
+      color:#A3111F;
     }
     .especial {
       margin:0 auto;
@@ -20,8 +27,8 @@
       width:500px;
       padding:10px;
     }
-    .fixedTo {
-      position:fixed;
+    .scroll {
+      height:1300px;
     }
   </style>
 </head>
@@ -32,16 +39,20 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt justo nec ligula tincidunt mattis. Etiam est turpis, varius non sagittis et, viverra vel massa. Pellentesque dui libero, lobortis rutrum posuere ac, mollis scelerisque sem. Pellentesque lorem libero, pellentesque sed auctor id, elementum sit amet sem. Fusce non tortor ligula.</p>
   </div><!-- .especial -->
   
+  <div class="scroll">
+    
+  </div><!-- .scroll -->
+  
   <!-- JS -->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-  <script type="text/javascript" src="../jquery.fixedto.js"></script>
+  <script type="text/javascript" src="jquery.fixedto.min.js"></script>
   <script type="text/javascript">
 	$(function(){
 	  $(".especial").fixedTo({
-	    "position":"right",
+	    "position":"left",
 	    "align":"center",
 	    "hide":true,
-	    "height_hide":10
+	    "height_hide":6
 	  });
 	});
   </script>
