@@ -12,6 +12,13 @@
     }
     body {
       text-align:center;
+      font:normal 13px/16px Arial,sans-serif;
+    }
+    a {
+      text-decoration:none;
+      font-weight:bold;
+      font-size:16px;
+      color:#A3111F;
     }
     .especial {
       margin:0 auto;
@@ -20,8 +27,60 @@
       width:500px;
       padding:10px;
     }
-    .fixedTo {
-      position:fixed;
+    .scroll {
+      height:1300px;
+      position:relative;
+    }
+    .editcontent {
+      width:400px;
+      margin:100px auto 0;
+      padding:20px;
+      background:#87D7F8;
+      -webkit-border-radius: 10px;
+         -moz-border-radius: 10px;
+              border-radius: 10px;
+    }
+    .editcontent p{
+      display:block;
+      text-align:left;
+      margin:0 5px 10px;
+    }
+    .editcontent ul {
+      padding:0 0 15px 20px;
+    }
+    .editcontent li {
+      text-align:left;
+      list-style:none;
+    }
+    .editcontent li strong {
+      display:inline-block;
+      width:100px;
+    }
+    .editcontent li span {
+      font-style:italic;
+    }
+    .editcontent form {
+      width:380px;
+      padding:10px;
+      font:normal 13px/18px Courier,monospace;
+      text-align:left;
+      background:#fff;
+      border:1px dashed #71CDF7;
+      -webkit-border-radius: 5px;
+         -moz-border-radius: 5px;
+              border-radius: 5px;
+    }
+    .editcontent form p {
+      margin:0;
+    }
+    .editcontent form label {
+      margin-left:20px;
+    }
+    .editcontent form input {
+      background:#EEE;
+      border:0;
+      padding:0 2px;
+      font:normal 13px/18px Courier,monospace;
     }
   </style>
 </head>
@@ -32,17 +91,61 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt justo nec ligula tincidunt mattis. Etiam est turpis, varius non sagittis et, viverra vel massa. Pellentesque dui libero, lobortis rutrum posuere ac, mollis scelerisque sem. Pellentesque lorem libero, pellentesque sed auctor id, elementum sit amet sem. Fusce non tortor ligula.</p>
   </div><!-- .especial -->
   
+  <div class="scroll">
+      <div class="editcontent">
+        <p>Experimenta con las diferentes opciones del plugin y comprueba si se adapta a lo que estabas buscando. Recuerda que puedes posicionar un bloque en cualquier lateral de la pantalla y a la vez alinearlo a izquierda, centro o derecha.</p>
+        <p>Opciones:</p>
+        <ul>
+          <li><strong>position:</strong> <span>top</span> | <span>right</span> | <span>bottom</span> | <span>left</span></li>
+          <li><strong>align:</strong> <span>left</span> | <span>center</span> | <span>right</span></li>
+          <li><strong>hide:</strong> <span>true</span> | <span>false</span></li>
+          <li><strong>height_hide:</strong> <span>number</span></li>
+        </ul>
+        <form method="post" action="#">
+            <p>$(".especial").fixedTo({</p>
+        	  <p><label for="position">"position":</label> "<input type="text" name="position" value="left" id="position" />",</p>
+        	  <p><label for="align">"align":</label> "<input type="text" name="align" value="center" id="align" />",</p>
+        	  <p><label for="hide">"hide":</label> <input type="text" name="hide" value="true" id="hide" />,</p>
+        	  <p><label for="height_hide">"height_hide":</label> <input type="text" name="height_hide" value="15" id="height_hide" /></p>
+        	  <p>});</p>
+        	  <p style="text-align:right"><a href="#" class="change">PROBAR</a></p>
+        </form>
+      </div><!-- .editcontent -->
+  </div><!-- .scroll -->
+  
   <!-- JS -->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-  <script type="text/javascript" src="jquery.fixedto.js"></script>
+  <script type="text/javascript" src="jquery.fixedto.min.js"></script>
   <script type="text/javascript">
 	$(function(){
+	  
 	  $(".especial").fixedTo({
-	    "position":"right",
+	    "position":"left",
 	    "align":"center",
 	    "hide":true,
-	    "height_hide":10
+	    "height_hide":6
 	  });
+	  
+	  $(".change").click(function(e){
+	    e.preventDefault();
+      the_inputs = $("input");
+      option_name = {};
+      option_value = {};
+      options_array = {};
+      for(i=0;i<(the_inputs.length);i++){
+        option_name= the_inputs[i]['id'];
+        option_value = the_inputs[i]['value'];
+        options_array[option_name] = option_value;
+      }
+      $(".especial").attr("style","").fixedTo({
+        "position":options_array["position"],
+        "align":options_array["align"],
+        "hide":options_array["hide"],
+        "height_hide":options_array["height_hide"]
+      });
+
+	  });
+	  
 	});
   </script>
 </body>
