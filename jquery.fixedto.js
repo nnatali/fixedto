@@ -1,8 +1,8 @@
 /*
  * jQuery fixedTo
  *
- * Revision: 1.1
- * Date: 09/06/2011
+ * Revision: 2
+ * Date: 10/06/2011
  *
  * Author: Nelly Natali (@nnatali)
  * Plugin URL: https://github.com/nnatali/jquery.fixedTo
@@ -73,7 +73,8 @@
 							new_style["ms-transform-origin"] = "0 0",
 							new_style["ms-transform"] = "rotate(90deg) translate("+Number(y)+""+"px,-"+Number(x)+"px)",
 							new_style["transform-origin"] = "0 0",
-							new_style["transform"] = "rotate(90deg) translate("+Number(y)+""+"px,-"+Number(x)+"px)";
+							new_style["transform"] = "rotate(90deg) translate("+Number(y)+""+"px,-"+Number(x)+"px)",
+							new_style["top"] = "0";
 							
 					if(isIE && jQuery.browser.version!="9.0"){
 							new_style["-ms-filter"] = "progid:DXImageTransform.Microsoft.Matrix(M11=-0, M12=-1, M21=1, M22=-0,sizingMethod='auto expand')";
@@ -105,7 +106,8 @@
 							new_style["ms-transform-origin"] = "0 0",
 							new_style["ms-transform"] = "rotate(270deg) translate(-"+Number(y)+""+"px,-"+Number(x)+"px)",
 							new_style["transform-origin"] = "0 0",
-							new_style["transform"] = "rotate(270deg) translate(-"+Number(y)+""+"px,-"+Number(x)+"px)";
+							new_style["transform"] = "rotate(270deg) translate(-"+Number(y)+""+"px,-"+Number(x)+"px)",
+							new_style["top"] = "0";
 							
 					if(isIE && jQuery.browser.version!="9.0"){
 							new_style["-ms-filter"] = "progid:DXImageTransform.Microsoft.Matrix(M11=-0, M12=1, M21=-1, M22=-0,sizingMethod='auto expand')";
@@ -120,20 +122,32 @@
 				}
 				
 				element.css(new_style);
-					
+
 			}
 			
 			show_hide = function(){
 				
-				element.prepend('<a href="#" class="close">X</a>');
+				link_close = jQuery(".close", element);
 				
-				jQuery('.close', element).toggle(function(){
-					if (isIE) element.css({"overflow":"hidden","height":height_hide+"px"});
-					else element.css({"overflow":"hidden"}).animate({"height":height_hide+"px"});
-			  }, function(){
-				  if (isIE) element.css({"overflow":"auto","height":"auto"});
-					else element.css({"overflow":"auto"}).animate({"height":height_element+"px"});
-				});
+				if(hide.toString()=="false" && link_close!=undefined){
+					
+					link_close.remove();
+					
+				} else {
+					
+					if(link_close.val()==undefined){
+						element.prepend('<a href="#" class="close">X</a>');
+					}
+				
+					jQuery(".close", element).toggle(function(){
+						if (isIE) element.css({"overflow":"hidden","height":height_hide+"px"});
+						else element.css({"overflow":"hidden"}).animate({"height":height_hide+"px"});
+				  }, function(){
+					  if (isIE) element.css({"overflow":"auto","height":"auto"});
+						else element.css({"overflow":"auto"}).animate({"height":height_element+"px"});
+					});
+					
+				}
 				
 			}
 			
@@ -143,10 +157,8 @@
 				position_calculate();
 			});
 
-			if(hide === true){
-				show_hide();
-			}
-			
+			show_hide();
+
     });
 	  
   }
