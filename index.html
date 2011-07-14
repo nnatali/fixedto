@@ -19,6 +19,7 @@
       font-weight:bold;
       font-size:16px;
       color:#A3111F;
+      padding:0 0 4px;
     }
     .especial {
       margin:0 auto;
@@ -26,10 +27,12 @@
       background:#eee;
       width:500px;
       padding:10px;
+      z-index:99;
     }
     .scroll {
       height:1300px;
       position:relative;
+      z-index:0;
     }
     .editcontent {
       width:400px;
@@ -106,9 +109,12 @@
         	  <p><label for="position">"position":</label> "<input type="text" name="position" value="left" id="position" />",</p>
         	  <p><label for="align">"align":</label> "<input type="text" name="align" value="center" id="align" />",</p>
         	  <p><label for="hide">"hide":</label> <input type="text" name="hide" value="true" id="hide" />,</p>
-        	  <p><label for="height_hide">"height_hide":</label> <input type="text" name="height_hide" value="15" id="height_hide" /></p>
+        	  <p><label for="height_hide">"height_hide":</label> <input type="text" name="height_hide" value="8" id="height_hide" /></p>
         	  <p>});</p>
-        	  <p style="text-align:right"><a href="#" class="change">PROBAR</a></p>
+        	  <p style="text-align:right">
+        	  <input type="submit" name="submit_button" value="PROBAR" />
+        	  
+        	  </p>
         </form>
       </div><!-- .editcontent -->
   </div><!-- .scroll -->
@@ -118,33 +124,32 @@
   <script type="text/javascript" src="jquery.fixedTo.min.js"></script>
   <script type="text/javascript">
 	$(function(){
+	  console.log("ready");
 	  
 	  $(".especial").fixedTo({
 	    "position":"left",
 	    "align":"center",
 	    "hide":true,
-	    "height_hide":6
+	    "height_hide":8
 	  });
 	  
-	  $(".change").click(function(e){
-	    e.preventDefault();
-      the_inputs = $("input");
-      option_name = {};
-      option_value = {};
-      options_array = {};
-      for(i=0;i<(the_inputs.length);i++){
-        option_name= the_inputs[i]['id'];
-        option_value = the_inputs[i]['value'];
-        options_array[option_name] = option_value;
-      }
+	  $("form").submit(function() {
+      
+      in_position = $("#position").val();
+      in_align = $("#align").val();
+      in_hide = $("#hide").val();
+      in_height_hide = $("#height_hide").val();
+      
       $(".especial").attr("style","").fixedTo({
-        "position":options_array["position"],
-        "align":options_array["align"],
-        "hide":options_array["hide"],
-        "height_hide":options_array["height_hide"]
+        "position":in_position,
+        "align":in_align,
+        "hide":in_hide,
+        "height_hide":in_height_hide
       });
-
-	  });
+      
+      return false;
+          
+    });
 	  
 	});
   </script>
