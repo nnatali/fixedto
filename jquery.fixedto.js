@@ -1,8 +1,8 @@
 /*
  * jQuery fixedTo
  *
- * Revision: 2
- * Date: 10/06/2011
+ * Revision: 2.1
+ * Date: 14/06/2011
  *
  * Author: Nelly Natali (@nnatali)
  * Plugin URL: https://github.com/nnatali/jquery.fixedTo
@@ -120,7 +120,7 @@
 							if(jQuery.browser.version=="7.0"){ new_style["left"] = 0; }
 					}
 				}
-				
+
 				element.css(new_style);
 
 			}
@@ -139,10 +139,12 @@
 						element.prepend('<a href="#" class="close">X</a>');
 					}
 				
-					jQuery(".close", element).toggle(function(){
+					jQuery(".close", element).toggle(function(e){
+						e.preventDefault();
 						if (isIE) element.css({"overflow":"hidden","height":height_hide+"px"});
 						else element.css({"overflow":"hidden"}).animate({"height":height_hide+"px"});
-				  }, function(){
+				  }, function(e){
+						e.preventDefault();
 					  if (isIE) element.css({"overflow":"auto","height":"auto"});
 						else element.css({"overflow":"auto"}).animate({"height":height_element+"px"});
 					});
@@ -153,8 +155,11 @@
 			
 			position_calculate();
 
-			jQuery(window).resize(function(){
-				position_calculate();
+
+			var resizeTimer = null; 
+			jQuery(window).bind('resize', function() { 
+			    if (resizeTimer) clearTimeout(resizeTimer); 
+			    resizeTimer = setTimeout(position_calculate, 100); 
 			});
 
 			show_hide();
