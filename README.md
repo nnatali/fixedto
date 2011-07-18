@@ -6,14 +6,8 @@ A jQuery plugin to positionate fixed an element, if the position is left or righ
 Calling
 -------
 
+`<script type="text/javascript" src="jquery.fixedTo.js"></script>`
 `$(".myelement").fixedTo();`
-
-`$(".myelement").fixedTo({`
-`  "position": "left",`
-`  "align": "center",`
-`  "hide": true,`
-`  "height_hide": 8`
-`}); `
 
 Parameters
 ----------
@@ -45,6 +39,16 @@ Parameters
     <td>Height in pixels visible for the element when is hide.</td>
   </tr>
 </table>
+
+Calling with parameters
+
+`$(".myelement").fixedTo({
+  "position": "left",
+  "align": "center",
+  "hide": true,
+  "height_hide": 8
+});`
+
 
 Example
 -------
