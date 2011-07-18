@@ -1,5 +1,5 @@
-fixedTo
-=======
+jquery.fixedTo
+==============
 
 A jQuery plugin to positionate fixed an element, if the position is left or right, the element rotates. It possible hide / show the element.
 
