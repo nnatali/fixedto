@@ -1,35 +1,81 @@
-A jQuery plugin to positionate fixed an element, if the position is left or right, the element rotates. It possible hide / show the element.
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>fixedTo : README</title>
+	<style type="text/css" media="screen">
+	 
+	</style>
+</head>
+<body>
 
-# Calling
+  <h1>Readme</h1>
+  
+  <p>A jQuery plugin to positionate fixed an element, if the position is left or right, the element rotates. It possible hide / show the element.</p>
+  
+  <h2>Calling</h2>
 
-$(".myelement").fixedTo();
+  <pre>
+    <code>$(".myelement").fixedTo();</code>
+  </pre>
+  
+  <pre>
+    <code>$(".myelement").fixedTo({
+      "position": "left",
+      "align": "center",
+      "hide": true,
+      "height_hide": 8
+    });</code>
+  </pre>
 
-$(".myelement").fixedTo({
-  "position": "left",
-  "align": "center",
-  "hide": true,
-  "height_hide": 8
-});
+  <h2>Parameters</h2>
+  
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>Position</td>
+      <td>Top</td>
+      <td>Position for the element respect the screen. Values: top, right, bottom, left.</td>
+    </tr>
+    <tr>
+      <td>Align</td>
+      <td>Center</td>
+      <td>Align of the element. Values: left, center, right.</td>
+    </tr>
+    <tr>
+      <td>Hide</td>
+      <td>True</td>
+      <td>Hide or show the element.</td>
+    </tr>
+    <tr>
+      <td>Height_hide</td>
+      <td>15</td>
+      <td>Height in pixels when the element is hide.</td>
+    </tr>
+  </table>
 
-# Parameters
+  <h2>Example</h2>
+  
+  <a href="http://nnatali.github.com/jquery.fixedTo/">http://nnatali.github.com/jquery.fixedTo/</a>
+  
+  <h2>Download</h2>
+  
+  <a href="https://github.com/nnatali/jquery.fixedTo/">https://github.com/nnatali/jquery.fixedTo/</a>
+  
+  <h2>Additional</h2>
+  
+  <ul>
+    <li>Required jQuery 
+      <a href="http://jquery.com/">http://jquery.com/</a>
+    </li>
+    <li>Browser compatibility: Firefox 3+, Chrome 4+, Safari 4+, Internet Explorer 7+</li>
+    <li>Created by <a href="http://twitter.com/nnatali">nnatali</a></li>
+  </ul>
 
-Name (Default) :  Description
-
-Position (Top) : Position for the element respect the screen. Values: top, right, bottom, left.
-Align (Center) : Align of the element. Values: left, center, right.
-Hide (True) : Hide or show the element.
-Height_hide (15) : Height in pixels when the element is hide.
-
-# Example
-
-http://nnatali.github.com/jquery.fixedTo/
-
-# Download
-
-https://github.com/nnatali/jquery.fixedTo
-
-# Additional
-
-- Required jQuery http://jquery.com/
-- Browser compatibility: Firefox 3+, Chrome 4+, Safari 4+, Internet Explorer 7+
-- Created by nnatali
+</body>
+</html>
