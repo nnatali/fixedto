@@ -6,8 +6,11 @@ A jQuery plugin to positionate fixed an element, if the position is left or righ
 Calling
 -------
 
-`<script type="text/javascript" src="jquery.fixedTo.js"></script>`
-`$(".myelement").fixedTo();`
+    <script type="text/javascript" src="jquery.fixedTo.min.js"></script>
+    <script type="text/javascript">
+      $(".myelement").fixedTo(); 
+    </script>
+
 
 Parameters
 ----------
@@ -41,13 +44,14 @@ Parameters
 </table>
 
 Calling with parameters
+-----------------------
 
-`$(".myelement").fixedTo({
-  "position": "left",
-  "align": "center",
-  "hide": true,
-  "height_hide": 8
-});`
+    $(".myelement").fixedTo({
+      "position": "left",
+      "align": "center",
+      "hide": true,
+      "height_hide": 8
+    });
 
 
 Example
@@ -55,10 +59,9 @@ Example
 
 * [http://nnatali.github.com/jquery.fixedTo/](http://nnatali.github.com/jquery.fixedTo/)
 
-Download
---------
 
-* [https://github.com/nnatali/jquery.fixedTo/archives/master](https://github.com/nnatali/jquery.fixedTo/archives/master)
+[Download](https://github.com/nnatali/jquery.fixedTo/archives/master)
+---------------------------------------------------------------------
 
 Additional
 ----------
