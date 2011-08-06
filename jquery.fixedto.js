@@ -20,7 +20,7 @@
 				align: "center",
 				hide: true,
 				height_hide: 15
-			}
+			};
 			var options = jQuery.extend(options_default,options_user),
 					position = options.position,
 					align = options.align,
@@ -51,7 +51,7 @@
 							new_style[vertical] = 0,
 							new_style[horizontal] = margin_horizontal+"px";
 					
-				}
+				};
 				
 				if (position=="right"){
 					
@@ -61,7 +61,7 @@
 						var y = (height_thewindow - width_element) / 2;
 					}else if(align=="right"){
 						var y = height_thewindow - width_element;
-					}
+					};
 						
 					var x = (width_thewindow - width_element) + width_element;
 					
@@ -82,9 +82,11 @@
 							x = width_thewindow - height_element;
 							new_style["marginTop"] = Number(y)+"px";
 							new_style["marginLeft"] = Number(x)+"px";
-							if(jQuery.browser.version=="7.0"){ new_style["right"] = 0; }
-					}
-				}
+							if(jQuery.browser.version=="7.0"){
+								new_style["right"] = 0;
+							};
+					};
+				};
 				
 				if(position=="left"){
 					
@@ -94,7 +96,7 @@
 						var y = width_element + ((height_thewindow - width_element) / 2);
 					}else if(align=="left"){
 						var y = width_element + (height_thewindow - width_element);
-					}
+					};
 					
 					var x = 0;
 					
@@ -112,18 +114,26 @@
 					if(isIE && jQuery.browser.version!="9.0"){
 							new_style["-ms-filter"] = "progid:DXImageTransform.Microsoft.Matrix(M11=-0, M12=1, M21=-1, M22=-0,sizingMethod='auto expand')";
 							new_style["filter"] = "progid:DXImageTransform.Microsoft.Matrix(M11=-0, M12=1, M21=-1, M22=-0,sizingMethod='auto expand')";
-							if(align == "left"){ y = height_thewindow - width_element; }
-							if(align == "center"){ y = (height_thewindow - width_element) / 2; }
-							if(align == "right"){ y = "0"; }
+							if(align == "left"){
+								y = height_thewindow - width_element;
+							};
+							if(align == "center"){
+								y = (height_thewindow - width_element) / 2;
+							};
+							if(align == "right"){
+								y = "0";
+							};
 							new_style["marginTop"] = Number(y)+"px";
 							new_style["marginLeft"] = 0;
-							if(jQuery.browser.version=="7.0"){ new_style["left"] = 0; }
-					}
-				}
+							if(jQuery.browser.version=="7.0"){
+								new_style["left"] = 0;
+							};
+					};
+				};
 
 				element.css(new_style);
 
-			}
+			};
 			
 			show_hide = function(){
 				
@@ -149,9 +159,9 @@
 						else element.css({"overflow":"auto"}).animate({"height":height_element+"px"});
 					});
 					
-				}
+				};
 				
-			}
+			};
 			
 			position_calculate();
 
@@ -165,6 +175,6 @@
 
     });
 	  
-  }
+  };
 
 })(jQuery);
