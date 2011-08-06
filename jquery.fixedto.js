@@ -1,8 +1,8 @@
 /*
  * jQuery fixedTo
  *
- * Revision: 2.1
- * Date: 14/06/2011
+ * Revision: 2.2
+ * Date: 06/08/2011
  *
  * Author: Nelly Natali (@nnatali)
  * Plugin URL: https://github.com/nnatali/jquery.fixedTo
@@ -15,31 +15,31 @@
 	  
     return this.each(function(){
 	
-			options_default = {
+			var options_default = {
 				position: "top",
 				align: "center",
 				hide: true,
 				height_hide: 15
 			}
-			options = jQuery.extend(options_default,options_user);
-			position = options.position;
-			align = options.align;
-			hide = options.hide;
-			height_hide = options.height_hide;
+			var options = jQuery.extend(options_default,options_user),
+					position = options.position,
+					align = options.align,
+					hide = options.hide,
+					height_hide = options.height_hide;
 			
 			var element = jQuery(this),
 					height_element = element.outerHeight(),
 					width_element = element.outerWidth();
 
-			isIE = jQuery.browser.msie ? true : false;
+			var isIE = jQuery.browser.msie ? true : false;
 
 			element.css({"position":"fixed"});
 			
 			position_calculate = function(){
 				
-				thewindow = jQuery(window),
-				height_thewindow = thewindow.height(),
-				width_thewindow = thewindow.width();
+				var thewindow = jQuery(window),
+						height_thewindow = thewindow.height(),
+						width_thewindow = thewindow.width();
 				
 				if(position=="top" || position=="bottom"){
 					
@@ -56,14 +56,14 @@
 				if (position=="right"){
 					
 					if(align=="left"){
-						y = 0;
+						var y = 0;
 					}else if(align=="center"){
-						y = (height_thewindow - width_element) / 2;
+						var y = (height_thewindow - width_element) / 2;
 					}else if(align=="right"){
-						y = height_thewindow - width_element;
+						var y = height_thewindow - width_element;
 					}
 						
-					x = (width_thewindow - width_element) + width_element;
+					var x = (width_thewindow - width_element) + width_element;
 					
 					var new_style = {};
 							new_style["-moz-transform-origin"] = "0 0",
@@ -89,14 +89,14 @@
 				if(position=="left"){
 					
 					if(align=="right"){
-						y = width_element;
+						var y = width_element;
 					}else if(align=="center"){
-						y = width_element + ((height_thewindow - width_element) / 2);
+						var y = width_element + ((height_thewindow - width_element) / 2);
 					}else if(align=="left"){
-						y = width_element + (height_thewindow - width_element);
+						var y = width_element + (height_thewindow - width_element);
 					}
 					
-					x = 0;
+					var x = 0;
 					
 					var new_style = {};
 							new_style["-moz-transform-origin"] = "0 0",
@@ -127,7 +127,7 @@
 			
 			show_hide = function(){
 				
-				link_close = jQuery(".close", element);
+				var link_close = jQuery(".close", element);
 				
 				if(hide.toString()=="false" && link_close!=undefined){
 					
@@ -154,7 +154,6 @@
 			}
 			
 			position_calculate();
-
 
 			var resizeTimer = null; 
 			jQuery(window).bind('resize', function() { 
